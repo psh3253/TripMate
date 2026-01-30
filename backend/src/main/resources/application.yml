@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: tripmate-backend
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/tripmate}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+server:
+  port: 8080
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET:your-256-bit-secret-key-for-jwt-token-signing-must-be-at-least-32-chars}
+  access-token-expiration: 3600000
+  refresh-token-expiration: 604800000
+
+# Kakao OAuth Configuration
+kakao:
+  client-id: ${KAKAO_CLIENT_ID:your-kakao-client-id}
+  redirect-uri: ${KAKAO_REDIRECT_URI:http://localhost:3000/oauth/kakao/callback}
+
+# AI Service Configuration
+ai-service:
+  url: ${AI_SERVICE_URL:http://localhost:8000}
+
+# Korea Tourism Organization API
+tour-api:
+  base-url: https://apis.data.go.kr/B551011/KorService2
+  service-key: ${TOUR_API_KEY:}
+
+logging:
+  level:
+    com.tripmate: DEBUG
